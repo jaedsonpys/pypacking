@@ -17,8 +17,8 @@ class PyPacking:
 
         self.package_path = package_info['packagePath']
 
+    @staticmethod
     def make_config(
-        self,
         projectName: str,
         description: str,
         version: str,
