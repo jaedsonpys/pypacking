@@ -16,3 +16,25 @@ class PyPacking:
         self.project_description = project_info['description']
 
         self.package_path = package_info['packagePath']
+
+    def make_config(
+        self,
+        projectName: str,
+        description: str,
+        version: str,
+        packagePath: str
+    ) -> None:
+        config = ConfigParser()
+
+        config['INFO'] = {
+            'projectName': projectName,
+            'description': description,
+            'version': version
+        }
+
+        config['PACKAGE'] = {
+            'packagePath': packagePath
+        }
+
+        with open(CONFIG_FILENAME, 'w') as file_write:
+            config.write(file_write)
