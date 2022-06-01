@@ -24,8 +24,16 @@ class PyPacking:
 
         self.package_path = package_info['packagePath']
 
-        self.file_hashes = {}
-        self._hash_files()
+        try:
+            self.file_hashes = dict(project_config['FILES'])
+        except KeyError:
+            self.file_hashes = {}
+
+        if not self.file_hashes:
+            self._hash_files()
+            project_config['FILES'] = self.file_hashes
+            with open(CONFIG_FILENAME, 'w') as file_w:
+                project_config.write(file_w)
 
     def _gen_hash(self, filepath: str) -> str:
         with open(filepath, 'rb') as file_read:
