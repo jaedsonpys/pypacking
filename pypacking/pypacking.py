@@ -34,6 +34,12 @@ class PyPacking:
 
         return hashfile
 
+    def _hash_files(self) -> dict:
+        for dirpath, dirnames, filenames in os.walk(self.package_path):
+            for f in filenames:
+                filepath = os.path.join(dirpath, f)
+                self.file_hashes[filepath] = self._gen_hash(filepath)
+
     @staticmethod
     def make_config(
         project_name: str,
