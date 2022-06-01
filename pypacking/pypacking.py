@@ -1,5 +1,6 @@
-from configparser import ConfigParser
 import os
+import shutil
+from configparser import ConfigParser
 
 CONFIG_FILENAME = 'pypacking.ini'
 
@@ -42,3 +43,17 @@ class PyPacking:
 
         with open(CONFIG_FILENAME, 'w') as file_write:
             config.write(file_write)
+
+    def make_package(self):
+        package_name = f'{self.project_name}-{self.project_version}'
+        package_dist_path = os.path.join('dist', package_name)
+
+        if os.path.isdir('dist') is False:
+            os.mkdir('dist')
+        
+        if os.path.isdir('build'):
+            shutil.rmtree('build')
+
+        shutil.copytree(self.package_path, 'build')
+        shutil.copyfile(CONFIG_FILENAME, os.path.join('build', CONFIG_FILENAME))
+        shutil.make_archive(package_dist_path, 'zip', 'build')
