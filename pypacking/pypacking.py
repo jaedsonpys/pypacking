@@ -1,9 +1,13 @@
 from configparser import ConfigParser
 
+CONFIG_FILENAME = 'pypacking.ini'
+
 
 class PyPacking:
     def __init__(self):
         project_config = ConfigParser()
+        project_config.read(CONFIG_FILENAME)
+
         project_info = project_config['INFO']
         package_info = project_config['PACKAGE']
 
