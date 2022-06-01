@@ -23,21 +23,21 @@ class PyPacking:
 
     @staticmethod
     def make_config(
-        projectName: str,
+        project_name: str,
         description: str,
         version: str,
-        packagePath: str
+        package_path: str
     ) -> None:
         config = ConfigParser()
 
         config['INFO'] = {
-            'projectName': projectName,
+            'projectName': project_name,
             'description': description,
             'version': version
         }
 
         config['PACKAGE'] = {
-            'packagePath': packagePath
+            'packagePath': package_path
         }
 
         with open(CONFIG_FILENAME, 'w') as file_write:
