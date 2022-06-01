@@ -1,8 +1,7 @@
-from hashlib import md5
 import os
 import shutil
 from configparser import ConfigParser
-from typing import Tuple
+from hashlib import md5
 
 CONFIG_FILENAME = 'pypacking.ini'
 
