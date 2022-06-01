@@ -1,6 +1,8 @@
+from hashlib import md5
 import os
 import shutil
 from configparser import ConfigParser
+from typing import Tuple
 
 CONFIG_FILENAME = 'pypacking.ini'
 
@@ -21,6 +23,16 @@ class PyPacking:
         self.project_description = project_info['description']
 
         self.package_path = package_info['packagePath']
+
+        self.file_hashes = {}
+        self._hash_files()
+
+    def _gen_hash(self, filepath: str) -> str:
+        with open(filepath, 'rb') as file_read:
+            content = file_read.read()
+            hashfile = md5(content).hexdigest()
+
+        return hashfile
 
     @staticmethod
     def make_config(
