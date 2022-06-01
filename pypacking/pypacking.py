@@ -66,11 +66,25 @@ class PyPacking:
         package_name = f'{self.project_name}-{self.project_version}'
         package_dist_path = os.path.join('dist', package_name)
 
+        modified_files = []
+
         if os.path.isdir('dist') is False:
             os.mkdir('dist')
         
         if os.path.isdir('build'):
             shutil.rmtree('build')
+
+        for filepath, previous_hash in self.file_hashes.items():
+            new_hash = self._gen_hash(filepath)
+
+            if new_hash != previous_hash:
+                self.file_hashes[filepath] = new_hash
+                modified_files.append(filepath)
+
+        for file in modified_files:
+            build_filepath = os.path.join('build', file)
+            os.remove(build_filepath)
+            shutil.copyfile(file, build_filepath)
 
         shutil.copytree(self.package_path, 'build')
         shutil.copyfile(CONFIG_FILENAME, os.path.join('build', CONFIG_FILENAME))
