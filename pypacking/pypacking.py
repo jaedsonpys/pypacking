@@ -1,10 +1,14 @@
 from configparser import ConfigParser
+import os
 
 CONFIG_FILENAME = 'pypacking.ini'
 
 
 class PyPacking:
     def __init__(self):
+        if os.path.isfile(CONFIG_FILENAME) is False:
+            raise FileNotFoundError('Configuration file "pypacking.ini" not found')
+
         project_config = ConfigParser()
         project_config.read(CONFIG_FILENAME)
 
