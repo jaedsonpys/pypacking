@@ -2,7 +2,9 @@ import os
 import shutil
 from configparser import ConfigParser
 from hashlib import md5
-from importlib.metadata import PackageNotFoundError
+
+from .exceptions import ConfigFileNotFoundError
+from .exceptions import PackageNotFoundError
 
 CONFIG_FILENAME = 'pypacking.ini'
 
@@ -10,7 +12,7 @@ CONFIG_FILENAME = 'pypacking.ini'
 class PyPacking:
     def __init__(self) -> None:
         if os.path.isfile(CONFIG_FILENAME) is False:
-            raise FileNotFoundError('Configuration file "pypacking.ini" not found')
+            raise ConfigFileNotFoundError('Configuration file "pypacking.ini" not found')
 
         project_config = ConfigParser()
         project_config.read(CONFIG_FILENAME)
