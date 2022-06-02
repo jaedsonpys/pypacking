@@ -11,6 +11,14 @@ CONFIG_FILENAME = 'pypacking.ini'
 USERNAME = os.environ.get('USER')
 USER_OS = system()
 
+_virtual_env = os.environ.get('VIRTUAL_ENV')
+
+if USER_OS == 'Linux':
+    if _virtual_env:
+        LOCAL_PATH = _virtual_env
+    else:
+        LOCAL_PATH = os.path.join('home', USERNAME, '.local')
+
 
 class PyPacking:
     def __init__(self) -> None:
