@@ -72,6 +72,8 @@ class PyPacking:
             'packagePath': package_path
         }
 
+        config['FILES'] = {}
+
         with open(CONFIG_FILENAME, 'w') as file_write:
             config.write(file_write)
 
