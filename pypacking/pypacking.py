@@ -82,7 +82,9 @@ class PyPacking:
         first_build = True
 
         if os.path.isdir('dist') is False:
+            print('Creating dist/ directory...', end='')
             os.mkdir('dist')
+            print('done')
         
         if os.path.isdir('build'):
             first_build = False
@@ -95,12 +97,25 @@ class PyPacking:
                     self.file_hashes[filepath] = new_hash
                     modified_files.append(filepath)
 
+            print(f'{len(modified_files)} files were changed. Copying...')
+
             for file in modified_files:
                 filepath = os.path.join('build', file)
+                print(f'Removing {file} from build/ directory...')
                 os.remove(filepath)
+                print(f'Copying {file} to build/{self.package_path} directory...', end='')
                 shutil.copyfile(file, filepath)
+                print('done')
         else:
+            print('First build detected')
+            print('Copying package to build/ directory...', end='')
             shutil.copytree(self.package_path, build_filepath)
+            print('done')
 
+        print('Copying "pypacking.ini" file to build/ directory...', end='')
         shutil.copyfile(CONFIG_FILENAME, os.path.join(build_filepath, CONFIG_FILENAME))
+        print('done')
+
+        print('Compressing build/ directory into ZIP file...', end='')
         shutil.make_archive(package_dist_path, 'zip', 'build')
+        print('done')
