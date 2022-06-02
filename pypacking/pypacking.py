@@ -7,7 +7,7 @@ CONFIG_FILENAME = 'pypacking.ini'
 
 
 class PyPacking:
-    def __init__(self):
+    def __init__(self) -> None:
         if os.path.isfile(CONFIG_FILENAME) is False:
             raise FileNotFoundError('Configuration file "pypacking.ini" not found')
 
@@ -69,7 +69,7 @@ class PyPacking:
         with open(CONFIG_FILENAME, 'w') as file_write:
             config.write(file_write)
 
-    def make_package(self):
+    def make_package(self) -> None:
         package_name = f'{self.project_name}-{self.project_version}'
         package_dist_path = os.path.join('dist', package_name)
         build_filepath = os.path.join('build', self.package_path)
