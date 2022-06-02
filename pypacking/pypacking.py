@@ -2,6 +2,7 @@ import os
 import shutil
 from configparser import ConfigParser
 from hashlib import md5
+from importlib.metadata import PackageNotFoundError
 
 CONFIG_FILENAME = 'pypacking.ini'
 
@@ -22,6 +23,9 @@ class PyPacking:
         self.project_description = project_info['description']
 
         self.package_path = package_info['packagePath']
+
+        if os.path.isdir(self.package_path) is False:
+            raise PackageNotFoundError(f'Package "{self.package_path}" not found in root directory')
 
         try:
             self.file_hashes = dict(project_config['FILES'])
