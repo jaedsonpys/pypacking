@@ -1,12 +1,15 @@
 import os
 import shutil
 from configparser import ConfigParser
+from platform import system
 from hashlib import md5
 
 from .exceptions import ConfigFileNotFoundError
 from .exceptions import PackageNotFoundError
 
 CONFIG_FILENAME = 'pypacking.ini'
+USERNAME = os.environ.get('USER')
+USER_OS = system()
 
 
 class PyPacking:
