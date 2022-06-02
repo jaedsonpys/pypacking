@@ -1,6 +1,7 @@
-from importlib.metadata import PackageNotFoundError
 from argeasy import ArgEasy
-from pypacking import PyPacking
+
+from .exceptions import ConfigFileNotFoundError, PackageNotFoundError
+from .pypacking import PyPacking
 
 
 def main():
@@ -34,7 +35,7 @@ def main():
 
         try:
             pypacking = PyPacking()
-        except FileNotFoundError as error:
+        except ConfigFileNotFoundError as error:
             print('-' * 30)
             print(f'\033[31m{error.msg}\033[m')
             return None
