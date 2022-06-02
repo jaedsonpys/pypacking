@@ -1,3 +1,4 @@
+from importlib.metadata import PackageNotFoundError
 from argeasy import ArgEasy
 from pypacking import PyPacking
 
@@ -10,6 +11,8 @@ def main():
     )
 
     parser.add_argument('generate_config', 'Generate a default config file', action='store_true')
+    parser.add_argument('dist', 'Create a distribution of your package', action='store_true')
+
     args = parser.get_args()
 
     if args.generate_config:
@@ -26,6 +29,28 @@ def main():
         PyPacking.make_config(project_name, project_description, project_version, package_path)
         print('-' * 50)
         print('Project config \033[1mcreated\033[m! Check "pypacking.ini" file.')
+    elif args.dist:
+        print('Creating package...')
+
+        try:
+            pypacking = PyPacking()
+        except FileNotFoundError as error:
+            print('-' * 30)
+            print(f'\033[31m{error.msg}\033[m')
+            return None
+        except PackageNotFoundError as error:
+            print('-' * 30)
+            print(f'\033[31m{error.msg}\033[m')
+            return None
+    
+        pypacking.make_package()
+        print('=' * 20, end=' ')
+        print('SUCESS', end=' ')
+        print('=' * 20)
+        
+        name = pypacking.project_name
+        version = pypacking.project_version
+        print(f'\033[32mPackage {name} in version {version} has been generated.\033[m')
 
 
 main()
