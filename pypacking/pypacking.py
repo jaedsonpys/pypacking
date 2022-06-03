@@ -169,7 +169,6 @@ class PyPacking:
             pass
         else:
             # if package is a library
-            print(LOCAL_PATH)
             shutil.unpack_archive(package_path, package_dst, format='zip')
             config_filename = os.path.join(package_dst, CONFIG_FILENAME)
             os.remove(config_filename)
