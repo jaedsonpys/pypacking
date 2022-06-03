@@ -179,3 +179,5 @@ class PyPacking:
             config_filename = os.path.join(package_dst, CONFIG_FILENAME)
             os.remove(config_filename)
             print('done')
+
+        print(f'Package \033[1m{name}\033[m successfully installed!')
