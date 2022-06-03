@@ -154,7 +154,7 @@ class PyPacking:
         print('done')
 
     def _install_library(self, package_path: str) -> None:
-        package_dst = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, '/site-packages')
+        package_dst = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
         print(f'\tThe package will be saved in "{package_dst}"')
         
         print('\tUnpack package...', end='')
