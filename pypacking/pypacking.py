@@ -3,6 +3,7 @@ import shutil
 from configparser import ConfigParser
 from platform import system
 from hashlib import md5
+import zipfile
 
 from .exceptions import ConfigFileNotFoundError
 from .exceptions import PackageNotFoundError
@@ -139,7 +140,7 @@ class PyPacking:
             print('done')
 
         print('Copying "pypacking.ini" file to build/ directory...', end='')
-        shutil.copyfile(CONFIG_FILENAME, os.path.join(build_filepath, CONFIG_FILENAME))
+        shutil.copyfile(CONFIG_FILENAME, os.path.join('build', CONFIG_FILENAME))
         print('done')
 
         print('Compressing build/ directory into ZIP file...', end='')
