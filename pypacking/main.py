@@ -52,6 +52,3 @@ def main():
         name = pypacking.project_name
         version = pypacking.project_version
         print(f'\033[32mPackage {name} in version {version} has been generated.\033[m')
-
-
-main()
