@@ -18,7 +18,7 @@ if USER_OS == 'Linux':
     if _virtual_env:
         LOCAL_PATH = _virtual_env
     else:
-        LOCAL_PATH = os.path.join('home', USERNAME, '.local')
+        LOCAL_PATH = os.path.join('/home', USERNAME, '.local')
 
 
 class PyPacking:
