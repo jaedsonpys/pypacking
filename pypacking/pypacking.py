@@ -147,6 +147,18 @@ class PyPacking:
         shutil.make_archive(package_dist_path, 'zip', 'build')
         print('done')
 
+    def _install_library(self, package_path: str) -> None:
+        package_dst = os.path.join(LOCAL_PATH, 'lib/python3/site-packages')
+        print(f'\tThe package will be saved in "{package_dst}"')
+        
+        print('\tUnpack package...', end='')
+        shutil.unpack_archive(package_path, package_dst, format='zip')
+        print('done')
+        print('\tRemoving configuration file...', end='')
+        config_filename = os.path.join(package_dst, CONFIG_FILENAME)
+        os.remove(config_filename)
+        print('done')
+
     def install(self, package_path: str) -> None:
         if os.path.isfile(package_path) is False:
             raise FileNotFoundError(f'Package "{package_path}" was not found.')
@@ -160,24 +172,12 @@ class PyPacking:
         package_info = config['PACKAGE']
         name = config['INFO']['projectName']
         version = config['INFO']['version']
-        package_name = package_info['packagePath']
-
-        package_dst = os.path.join(LOCAL_PATH, 'lib/python3/site-packages')
         script_entry = package_info.get('scriptEntry')
 
         print(f'Installing {name} in {version} version...')
-        print(f'\tThe package will be saved in "{package_dst}"')
-        
+        self._install_library(package_path)
+
         if script_entry:
             pass
-        else:
-            # if package is a library
-            print('\tUnpack package...', end='')
-            shutil.unpack_archive(package_path, package_dst, format='zip')
-            print('done')
-            print('\tRemoving configuration file...', end='')
-            config_filename = os.path.join(package_dst, CONFIG_FILENAME)
-            os.remove(config_filename)
-            print('done')
 
         print(f'Package \033[1m{name}\033[m successfully installed!')
