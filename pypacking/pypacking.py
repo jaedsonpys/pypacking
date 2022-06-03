@@ -162,9 +162,7 @@ class PyPacking:
         version = config['INFO']['version']
         package_name = package_info['packagePath']
 
-        libdir_path = os.path.join(LOCAL_PATH, 'lib/python3/site-packages')
-        package_dst = os.path.join(LOCAL_PATH, 'lib/python3/site-packages', package_name)
-
+        package_dst = os.path.join(LOCAL_PATH, 'lib/python3/site-packages')
         script_entry = package_info.get('scriptEntry')
         
         if script_entry:
@@ -173,5 +171,5 @@ class PyPacking:
             # if package is a library
             print(LOCAL_PATH)
             shutil.unpack_archive(package_path, package_dst, format='zip')
-            config_filename = os.path.join(package_dst, libdir_path, CONFIG_FILENAME)
+            config_filename = os.path.join(package_dst, CONFIG_FILENAME)
             os.remove(config_filename)
