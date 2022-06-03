@@ -174,7 +174,11 @@ class PyPacking:
 
         print(f'\tCreating a script for the command "{command}"...')
         
-        script = '#!/usr/bin/python3\n'
+        if _virtual_env:
+            script = f'#!{LOCAL_PATH}/bin/python3\n'
+        else:
+            script = '#!/usr/bin/python3\n'
+
         script += f'from {package_name} import {file}\n\n'
         script += f'_call_fc = {function}()\n'
         script += 'exit(_call_fc)'
