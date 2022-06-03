@@ -179,7 +179,7 @@ class PyPacking:
         else:
             script = '#!/usr/bin/python3\n'
 
-        script += f'from {package_name} import {file}\n\n'
+        script += f'from {package_name}.{file} import {function}\n\n'
         script += f'_call_fc = {function}()\n'
         script += 'exit(_call_fc)'
 
