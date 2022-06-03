@@ -159,6 +159,29 @@ class PyPacking:
         os.remove(config_filename)
         print('done')
 
+    def _install_script(self, package_name: str, script_entry: str) -> None:
+        # script entry format: <command name>:<file>:<function (without parentheses)>
+        # example: pysgi:main:run
+
+        script_dst = os.path.join(LOCAL_PATH, 'bin')
+        command, file, function = script_entry.split(':')
+
+        print(f'\tCreating a script for the command "{command}"...')
+        
+        script = '#!/usr/bin/python3\n'
+        script += f'from {package_name} import {file}\n\n'
+        script += f'_call_fc = {function}()\n'
+        script += 'exit(_call_fc)'
+
+        entry_filename = os.path.join(script_dst, command)
+
+        with open(entry_filename, 'w') as entry_script:
+            entry_script.write(script)
+
+        print('\tGiving execute permission to the script...')
+        os.system(f'chmod +x {entry_filename}')
+        print('\tScript created.')
+
     def install(self, package_path: str) -> None:
         if os.path.isfile(package_path) is False:
             raise FileNotFoundError(f'Package "{package_path}" was not found.')
@@ -178,6 +201,6 @@ class PyPacking:
         self._install_library(package_path)
 
         if script_entry:
-            pass
+            self._install_script(package_info['packagePath'], script_entry)
 
         print(f'Package \033[1m{name}\033[m successfully installed!')
