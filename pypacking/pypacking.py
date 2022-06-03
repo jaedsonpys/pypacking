@@ -146,3 +146,32 @@ class PyPacking:
         print('Compressing build/ directory into ZIP file...', end='')
         shutil.make_archive(package_dist_path, 'zip', 'build')
         print('done')
+
+    def install(self, package_path: str) -> None:
+        if os.path.isfile(package_path) is False:
+            raise FileNotFoundError(f'Package "{package_path}" was not found.')
+
+        package_data = zipfile.ZipFile(package_path, 'r')
+        package_config = package_data.read(CONFIG_FILENAME)
+
+        config = ConfigParser()
+        config.read_string(package_config.decode())
+
+        package_info = config['PACKAGE']
+        name = config['INFO']['projectName']
+        version = config['INFO']['version']
+        package_name = package_info['packagePath']
+
+        libdir_path = os.path.join(LOCAL_PATH, 'lib/python3/site-packages')
+        package_dst = os.path.join(LOCAL_PATH, 'lib/python3/site-packages', package_name)
+
+        script_entry = package_info.get('scriptEntry')
+        
+        if script_entry:
+            pass
+        else:
+            # if package is a library
+            print(LOCAL_PATH)
+            shutil.unpack_archive(package_path, package_dst, format='zip')
+            config_filename = os.path.join(package_dst, libdir_path, CONFIG_FILENAME)
+            os.remove(config_filename)
