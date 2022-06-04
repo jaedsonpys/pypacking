@@ -28,4 +28,8 @@ git clone git@github.com:jaedsonpys/pypacking.git
 
 ## License
 
-This project use the `MIT License © 2022`
+```
+MIT License © 2022 Jaedson Silva
+```
+
+This project uses the MIT license, follow the license instructions so you can enjoy this open-source project
