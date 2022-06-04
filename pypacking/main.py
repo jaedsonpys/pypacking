@@ -1,4 +1,5 @@
 from argeasy import ArgEasy
+import os
 
 from .exceptions import ConfigFileNotFoundError, PackageNotFoundError
 from .pypacking import PyPacking
@@ -13,6 +14,7 @@ def main():
 
     parser.add_argument('generate_config', 'Generate a default config file', action='store_true')
     parser.add_argument('dist', 'Create a distribution of your package', action='store_true')
+    parser.add_argument('install', 'Install a package')
 
     args = parser.get_args()
 
@@ -52,3 +54,13 @@ def main():
         name = pypacking.project_name
         version = pypacking.project_version
         print(f'\033[32mPackage {name} in version {version} has been generated.\033[m')
+    elif args.install:
+        package_name: str = args.install
+
+        if package_name.endswith('.zip'):
+            if os.path.isfile(package_name) is False:
+                print('Error:')
+                print(f'\t\033[31mPackage file "{package_name}" not found\033[m')
+            else:
+                pypack = PyPacking()
+                pypack.install(package_name)
