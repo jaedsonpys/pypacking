@@ -34,9 +34,10 @@ def main():
         print('Project config \033[1mcreated\033[m! Check "pypacking.ini" file.')
     elif args.dist:
         print('Creating package...')
+        pypacking = PyPacking()
 
         try:
-            pypacking = PyPacking()
+            pypacking.read_config()
         except ConfigFileNotFoundError as error:
             print('-' * 30)
             print(f'\033[31m{error.msg}\033[m')
