@@ -26,6 +26,32 @@ git clone git@github.com:jaedsonpys/pypacking.git
 
 > If you are using a virtual environment, PyPacking will be installed there.
 
+# How to use
+
+After installing PyPacking, here's a short tutorial on how to use the package manager:
+
+## Configuration file
+
+The *configuration files* are responsible for your entire project, it will contain information about the **package** being distributed. We use `.ini` file extension to store this information.
+
+You can generate your configuration file with a simple command:
+
+```
+pypacking generate_config
+```
+
+After that, you must fill in some information about your project:
+
+```
+Name: 
+Description (default description): 
+Version (1.0.0): 
+Python package: 
+Entry script (nothing to disable): 
+```
+
+By filling this, the `pypacking.ini` file will be created with all the **information** about your project
+
 ## License
 
 ```
