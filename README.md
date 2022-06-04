@@ -26,7 +26,7 @@ git clone git@github.com:jaedsonpys/pypacking.git
 
 > If you are using a virtual environment, PyPacking will be installed there.
 
-# How to use
+## How to use
 
 After installing PyPacking, here's a short tutorial on how to use the package manager:
 
