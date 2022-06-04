@@ -23,13 +23,16 @@ def main():
         project_description = input('Description (default description): ').strip()
         project_version = input('Version (1.0.0): ').strip()
         package_path = input('Python package: ').strip()
+        entry_script = input('Entry script (nothing to disable): ').strip()
+
+        entry_script = entry_script if entry_script else None
 
         if not project_version:
             project_version = '1.0.0'
         if not project_description:
             project_description = f'The {project_name} project'
 
-        PyPacking.make_config(project_name, project_description, project_version, package_path)
+        PyPacking.make_config(project_name, project_description, project_version, package_path, entry_script)
         print('-' * 50)
         print('Project config \033[1mcreated\033[m! Check "pypacking.ini" file.')
     elif args.dist:
