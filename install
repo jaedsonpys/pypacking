@@ -17,6 +17,7 @@ PyPacking.make_config(
 )
 
 pypacking = PyPacking()
+pypacking.read_config()
 
 # making package
 print('Make package...')
