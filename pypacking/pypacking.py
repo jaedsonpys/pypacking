@@ -1,7 +1,7 @@
 import os
 import shutil
 from configparser import ConfigParser
-from platform import system
+import platform
 from hashlib import md5
 import zipfile
 
@@ -10,7 +10,7 @@ from .exceptions import PackageNotFoundError
 
 CONFIG_FILENAME = 'pypacking.ini'
 USERNAME = os.environ.get('USER')
-USER_OS = system()
+USER_OS = platform.system()
 
 _virtual_env = os.environ.get('VIRTUAL_ENV')
 
