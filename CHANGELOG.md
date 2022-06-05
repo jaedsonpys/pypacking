@@ -1,8 +1,8 @@
-# Version 1
+# Version 0
 
-All CHANGELOG of version 1.
+All CHANGELOG of version 0.
 
-## 1.0.0
+## 0.1.0
 
 ### Additions
 
