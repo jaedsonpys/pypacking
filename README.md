@@ -54,13 +54,28 @@ By filling this, the `pypacking.ini` file will be created with all the **informa
 
 ### Installing packages
 
-You can install packages with .zip files on your own computer, as **PyPacking** does not yet have a server to store files. To do this, use the `install` command:
+You can **install packages with .zip files** on your own computer, as **PyPacking** does not yet have a server to store files. To do this, use the `install` command:
 
 ```
 pypacking install [package name]
 ```
 
 Your package will be installed in a location depending on your *environment*, if it is in a virtual environment it will be installed there.
+
+### Creating packages
+
+To create packages (after creating the configuration file), just run the `dist` command, which will create two directories:
+
+1. The `build/` directory which stores a copy of your entire package;
+2. The `dist/` directory that stores the already zipped package.
+
+**PyPacking**, after creating your first project package, the next time you run the `dist` command, it will copy to the `build/` directory only the files that were changed, avoiding **unnecessary processing** to copy the whole package again.
+
+Example of `dist` command:
+
+```
+pypacking dist
+```
 
 ## License
 
