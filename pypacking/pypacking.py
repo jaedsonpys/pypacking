@@ -162,16 +162,18 @@ class PyPacking:
         shutil.make_archive(package_dist_path, 'zip', 'build')
         print('done')
 
-    def _install_library(self, package_path: str) -> None:
+    def _install_library(self, project_name: str, version: str, package_path: str) -> None:
         package_dst = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
         print(f'\tThe package will be saved in "{package_dst}"')
         
         print('\tUnpack package...', end='')
         shutil.unpack_archive(package_path, package_dst, format='zip')
         print('done')
-        print('\tRemoving configuration file...', end='')
+        print('\tRename configuration file...', end='')
+
         config_filename = os.path.join(package_dst, CONFIG_FILENAME)
-        os.remove(config_filename)
+        config_package_filename = os.path.join(package_dst, f'{project_name}-{version}.ini')
+        os.rename(config_filename, config_package_filename)
         print('done')
 
     def _install_script(self, package_name: str, script_entry: str) -> None:
@@ -217,7 +219,7 @@ class PyPacking:
         script_entry = package_info.get('scriptEntry')
 
         print(f'Installing {name} in {version} version...')
-        self._install_library(package_path)
+        self._install_library(name, version, package_path)
 
         if script_entry:
             self._install_script(package_info['packagePath'], script_entry)
