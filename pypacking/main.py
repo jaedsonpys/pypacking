@@ -23,7 +23,7 @@ def main():
     if args.generate_config:
         author_name = input('Author name: ').strip()
         author_email = input('Author email: ').strip()
-        project_name = input('Name: ').strip()
+        project_name = input('Project name: ').strip()
         project_description = input('Description (default description): ').strip()
         project_version = input('Version (1.0.0): ').strip()
         package_path = input('Python package: ').strip()
@@ -45,7 +45,7 @@ def main():
             package_path,
             script_entry=entry_script
         )
-        
+
         print('-' * 50)
         print('Project config \033[1mcreated\033[m! Check "pypacking.ini" file.')
     elif args.dist:
