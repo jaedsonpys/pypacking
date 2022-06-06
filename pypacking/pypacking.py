@@ -89,6 +89,8 @@ class PyPacking:
 
     @staticmethod
     def make_config(
+        author_name: str,
+        author_email: str,
         project_name: str,
         description: str,
         version: str,
@@ -98,6 +100,8 @@ class PyPacking:
         config = ConfigParser()
 
         config['INFO'] = {
+            'authorName': author_name,
+            'authorEmail': author_email,
             'projectName': project_name,
             'description': description,
             'version': version
