@@ -44,11 +44,11 @@ All CHANGELOG of version 2.
 
 ### Aditions
 
-- `29ea558`: Getting name and email of project author;
+- `29ea558`: Getting name and email of project author.
 
 ### Fixes
 
 - `4361810`: Using "get" method to get options from configuration file in read_config method;
 - `e9d80e4`: Adding exception to handle invalid files;
 - `f0522b4`: Removing unnecessary attributes in read_config;
-- `90e1b35`: Fixing parameter name to snake_case style;
+- `90e1b35`: Fixing parameter name to snake_case style.
