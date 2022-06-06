@@ -228,3 +228,23 @@ class PyPacking:
             self._install_script(package_info['packagePath'], script_entry)
 
         print(f'Package \033[1m{name}\033[m successfully installed!')
+
+    @staticmethod
+    def list_packages() -> dict:
+        site_packages_path = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
+        packages_path = os.listdir(site_packages_path)
+        all_packages = {}
+
+        for p in packages_path:
+            if p.endswith('.ini'):
+                full_filepath = os.path.join(site_packages_path, p)
+                config = ConfigParser()
+                config.read(full_filepath)
+
+                package_config = {}
+                package_config.update(dict(config['PACKAGE']))
+                package_config.update(dict(config['INFO']))
+
+                all_packages[config['INFO']['projectName']] = package_config
+
+        return all_packages
