@@ -1,6 +1,6 @@
 # PyPacking
 
-![BADGE](https://img.shields.io/badge/version-1.0.0-green)
+![BADGE](https://img.shields.io/badge/version-2.0.0-green)
 ![BADGE](https://img.shields.io/badge/license-MIT-red)
 ![BADGE](https://img.shields.io/badge/OS-Linux-yellow)
 
