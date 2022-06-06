@@ -34,9 +34,7 @@ class PyPacking:
         self.project_description = None
         self.project_name = None
         self.project_version = None
-        self.package_type = None
         self.file_hashes = None
-        self.script_entry = None
 
     def read_config(self) -> None:
         if os.path.isfile(CONFIG_FILENAME) is False:
