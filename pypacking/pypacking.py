@@ -7,6 +7,7 @@ import zipfile
 
 from .exceptions import ConfigFileNotFoundError
 from .exceptions import PackageNotFoundError
+from .exceptions import InvalidConfigFileError
 
 CONFIG_FILENAME = 'pypacking.ini'
 USERNAME = os.environ.get('USER')
@@ -44,8 +45,11 @@ class PyPacking:
         project_config = ConfigParser()
         project_config.read(CONFIG_FILENAME)
 
-        project_info = project_config['INFO']
-        package_info = project_config['PACKAGE']
+        try:
+            project_info = project_config['INFO']
+            package_info = project_config['PACKAGE']
+        except KeyError:
+            raise InvalidConfigFileError('Default settings not found')
 
         self.project_name = project_info.get('projectName')
         self.project_version = project_info.get('version')
