@@ -222,7 +222,7 @@ class PyPacking:
         script_entry = package_info.get('scriptEntry')
 
         print(f'Installing {name} in {version} version...')
-        self._install_library(name, version, package_path)
+        self._install_library(name, package_path)
 
         if script_entry:
             self._install_script(package_info['packagePath'], script_entry)
