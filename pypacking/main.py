@@ -14,6 +14,7 @@ def main():
 
     parser.add_argument('generate_config', 'Generate a default config file', action='store_true')
     parser.add_argument('dist', 'Create a distribution of your package', action='store_true')
+    parser.add_argument('list', 'Lists packages installed by PyPacking', action='store_true')
     parser.add_argument('install', 'Install a package')
 
     args = parser.get_args()
@@ -68,3 +69,8 @@ def main():
             else:
                 pypack = PyPacking()
                 pypack.install(package_name)
+    elif args.list:
+        packages = PyPacking.list_packages()
+
+        for name, info in packages.items():
+            print(f'{name}::{info["version"]}')
