@@ -62,6 +62,14 @@ pypacking install [package name]
 
 Your package will be installed in a location depending on your *environment*, if it is in a virtual environment it will be installed there.
 
+## Uninstalling packages
+
+To uninstalling packages installed by **PyPacking**, use the `uninstall` command:
+
+```
+pypacking uninstall [package name]
+```
+
 ### Creating packages
 
 To create packages (after creating the configuration file), just run the `dist` command, which will create two directories:
