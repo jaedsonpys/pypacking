@@ -62,12 +62,23 @@ pypacking install [package name]
 
 Your package will be installed in a location depending on your *environment*, if it is in a virtual environment it will be installed there.
 
-## Uninstalling packages
+### Uninstalling packages
 
 To uninstalling packages installed by **PyPacking**, use the `uninstall` command:
 
 ```
 pypacking uninstall [package name]
+```
+
+### Listing packages
+
+You can list all packages installed by **PyPacking**, `list` command show the package name and version. See a example:
+
+```
+user@computer:~$ pypacking list
+PyPacking::1.0.0
+OtherPackage::5.3.4
+...
 ```
 
 ### Creating packages
