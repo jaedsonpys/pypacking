@@ -1,7 +1,9 @@
 from argeasy import ArgEasy
 import os
 
-from .exceptions import ConfigFileNotFoundError, PackageNotFoundError
+from .exceptions import ConfigFileNotFoundError
+from .exceptions import PackageNotFoundError
+from .exceptions import InvalidConfigFileError
 from .pypacking import PyPacking
 
 
@@ -59,6 +61,10 @@ def main():
             print(f'\033[31m{error.msg}\033[m')
             return None
         except PackageNotFoundError as error:
+            print('-' * 30)
+            print(f'\033[31m{error.msg}\033[m')
+            return None
+        except InvalidConfigFileError as error:
             print('-' * 30)
             print(f'\033[31m{error.msg}\033[m')
             return None
