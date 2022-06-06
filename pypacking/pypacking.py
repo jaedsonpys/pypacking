@@ -94,7 +94,7 @@ class PyPacking:
         description: str,
         version: str,
         package_path: str,
-        scriptEntry: str = None
+        script_entry: str = None
     ) -> None:
         config = ConfigParser()
 
@@ -110,8 +110,8 @@ class PyPacking:
             'packagePath': package_path,
         }
 
-        if scriptEntry:
-            config['PACKAGE']['scriptEntry'] = scriptEntry
+        if script_entry:
+            config['PACKAGE']['scriptEntry'] = script_entry
 
         config['FILES'] = {}
 

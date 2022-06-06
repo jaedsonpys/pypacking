@@ -15,7 +15,7 @@ PyPacking.make_config(
     description='PyPacking python package manager',
     version=__version__,
     package_path='pypacking',
-    scriptEntry='pypacking:main:main'
+    script_entry='pypacking:main:main'
 )
 
 pypacking = PyPacking()
