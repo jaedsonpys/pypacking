@@ -16,6 +16,7 @@ def main():
     parser.add_argument('dist', 'Create a distribution of your package', action='store_true')
     parser.add_argument('list', 'Lists packages installed by PyPacking', action='store_true')
     parser.add_argument('install', 'Install a package')
+    parser.add_argument('uninstall', 'Uninstall a package')
 
     args = parser.get_args()
 
@@ -74,3 +75,8 @@ def main():
 
         for name, info in packages.items():
             print(f'{name}::{info["version"]}')
+    elif args.uninstall:
+        project_name = args.uninstall
+
+        pypacking = PyPacking()
+        pypacking.uninstall(project_name)
