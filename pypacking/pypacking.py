@@ -51,6 +51,8 @@ class PyPacking:
         except KeyError:
             raise InvalidConfigFileError('Default settings not found')
 
+        self.author_name = project_info.get('authorName')
+        self.author_email = project_info.get('authorEmail') 
         self.project_name = project_info.get('projectName')
         self.project_version = project_info.get('version')
         self.project_description = project_info.get('description')
