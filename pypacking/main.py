@@ -21,6 +21,8 @@ def main():
     args = parser.get_args()
 
     if args.generate_config:
+        author_name = input('Author name: ').strip()
+        author_email = input('Author email: ').strip()
         project_name = input('Name: ').strip()
         project_description = input('Description (default description): ').strip()
         project_version = input('Version (1.0.0): ').strip()
@@ -34,7 +36,16 @@ def main():
         if not project_description:
             project_description = f'The {project_name} project'
 
-        PyPacking.make_config(project_name, project_description, project_version, package_path, entry_script)
+        PyPacking.make_config(
+            author_name,
+            author_email,
+            project_name,
+            project_description,
+            project_version,
+            package_path,
+            script_entry=entry_script
+        )
+        
         print('-' * 50)
         print('Project config \033[1mcreated\033[m! Check "pypacking.ini" file.')
     elif args.dist:
