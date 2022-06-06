@@ -19,3 +19,19 @@ All CHANGELOG of version 0.
 ### Fixes
 
 - `583788c`: displaying message if it has modified files.
+
+# Version 1
+
+All CHANGELOG of version 1.
+
+## 1.0.0
+
+### Aditions
+
+- `6621701`: Adding command to uninstall packages installed by PyPacking.
+
+### Fixes
+
+- `1c3b888`: Adding empty line at end of script in _install_script() method;
+- `bf048ee`: Removing version from package configuration file name;
+- `b490eb0`: Removing unnecessary function parameter.
