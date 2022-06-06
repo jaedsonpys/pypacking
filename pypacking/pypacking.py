@@ -58,13 +58,6 @@ class PyPacking:
         self.project_description = project_info.get('description')
 
         self.package_path = package_info.get('packagePath')
-        script_entry = package_info.get('scriptEntry')
-        
-        if script_entry:
-            self.package_type = 'entry_script'
-            self.script_entry = script_entry
-        else:
-            self.package_type = 'library'
 
         if os.path.isdir(self.package_path) is False:
             raise PackageNotFoundError(f'Package "{self.package_path}" not found in root directory')
