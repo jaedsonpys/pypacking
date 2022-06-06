@@ -248,3 +248,25 @@ class PyPacking:
                 all_packages[config['INFO']['projectName']] = package_config
 
         return all_packages
+
+    def uninstall(self, project_name: str) -> None:
+        all_packages = self.list_packages()
+        selected_package = all_packages.get(project_name)
+
+        if selected_package:
+            site_packages_path = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
+            package_name = selected_package['packagepath']
+            package_version = selected_package['version']
+
+            package_path = os.path.join(site_packages_path, package_name)
+            shutil.rmtree(package_path)
+
+            script_entry = selected_package.get('scriptentry')
+
+            if script_entry:
+                command_name = script_entry.split(':')[0]
+                script_path = os.path.join(LOCAL_PATH, 'bin', command_name)
+                os.remove(script_path)
+
+            config_filepath = os.path.join(site_packages_path, f'{project_name}-{package_version}.ini')
+            os.remove(config_filepath)
