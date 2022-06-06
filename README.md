@@ -6,6 +6,8 @@
 
 PyPacking is a **package manager** and installer for Python designed to be **interactive and user-friendly**. With easy operation, you can install *packages and tools*.
 
+Track changes for *all versions* of PyPacking in the [CHANGELOG.md](https://github.com/jaedsonpys/pypacking/blob/master/CHANGELOG.md) file.
+
 ## How to install
 
 surprisingly, we use PyPacking itself to perform its own installation. You just need to run the script from the `install` file and that's it, installed.
