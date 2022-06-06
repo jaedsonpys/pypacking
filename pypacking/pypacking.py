@@ -175,7 +175,7 @@ class PyPacking:
         print('\tRename configuration file...', end='')
 
         config_filename = os.path.join(package_dst, CONFIG_FILENAME)
-        config_package_filename = os.path.join(package_dst, f'{project_name}-{version}.ini')
+        config_package_filename = os.path.join(package_dst, f'{project_name}.ini')
         os.rename(config_filename, config_package_filename)
         print('done')
 
@@ -275,7 +275,7 @@ class PyPacking:
                 print('done')
 
             print('Removing package configuration file...', end='')
-            config_filepath = os.path.join(site_packages_path, f'{project_name}-{package_version}.ini')
+            config_filepath = os.path.join(site_packages_path, f'{project_name}.ini')
             os.remove(config_filepath)
             print('done')
         else:
