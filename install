@@ -9,6 +9,8 @@ import shutil
 print('Creating "pypacking.ini" file...')
 
 PyPacking.make_config(
+    author_name='Jaedson Silva',
+    author_email='imunknowuser@protonmail.com',
     project_name='PyPacking',
     description='PyPacking python package manager',
     version=__version__,
