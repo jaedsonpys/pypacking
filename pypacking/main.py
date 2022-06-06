@@ -11,7 +11,7 @@ def main():
     parser = ArgEasy(
         project_name='PyPacking',
         description='Build project packages',
-        version='1.0.0'
+        version='2.0.0'
     )
 
     parser.add_argument('generate_config', 'Generate a default config file', action='store_true')
