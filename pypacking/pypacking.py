@@ -195,7 +195,7 @@ class PyPacking:
 
         script += f'from {package_name}.{file} import {function}\n\n'
         script += f'_call_fc = {function}()\n'
-        script += 'exit(_call_fc)'
+        script += 'exit(_call_fc)\n'
 
         entry_filename = os.path.join(script_dst, command)
 
