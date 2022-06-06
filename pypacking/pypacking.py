@@ -47,11 +47,11 @@ class PyPacking:
         project_info = project_config['INFO']
         package_info = project_config['PACKAGE']
 
-        self.project_name = project_info['projectName']
-        self.project_version = project_info['version']
-        self.project_description = project_info['description']
+        self.project_name = project_info.get('projectName')
+        self.project_version = project_info.get('version')
+        self.project_description = project_info.get('description')
 
-        self.package_path = package_info['packagePath']
+        self.package_path = package_info.get('packagePath')
         script_entry = package_info.get('scriptEntry')
         
         if script_entry:
