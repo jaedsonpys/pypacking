@@ -258,15 +258,25 @@ class PyPacking:
             package_name = selected_package['packagepath']
             package_version = selected_package['version']
 
+            print(f'Uninstalling package {package_name} in version {package_version}...')
+            print(f'Removing from lib/ directory...', end='')
+
             package_path = os.path.join(site_packages_path, package_name)
             shutil.rmtree(package_path)
+            print('done')
 
             script_entry = selected_package.get('scriptentry')
 
             if script_entry:
+                print('Removing from bin/ directory...', end='')
                 command_name = script_entry.split(':')[0]
                 script_path = os.path.join(LOCAL_PATH, 'bin', command_name)
                 os.remove(script_path)
+                print('done')
 
+            print('Removing package configuration file...', end='')
             config_filepath = os.path.join(site_packages_path, f'{project_name}-{package_version}.ini')
             os.remove(config_filepath)
+            print('done')
+        else:
+            print(f'\033[31mPackage "{project_name}" not found.\033[m')
