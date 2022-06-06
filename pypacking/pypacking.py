@@ -165,7 +165,7 @@ class PyPacking:
         shutil.make_archive(package_dist_path, 'zip', 'build')
         print('done')
 
-    def _install_library(self, project_name: str, version: str, package_path: str) -> None:
+    def _install_library(self, project_name: str, package_path: str) -> None:
         package_dst = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
         print(f'\tThe package will be saved in "{package_dst}"')
         
