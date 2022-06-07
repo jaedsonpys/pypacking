@@ -1,10 +1,10 @@
 from pyseqtest import SeqTest
 import os
-import sys
-
-sys.path.insert(0, './')
 
 from pypacking import PyPacking
+from pypacking.exceptions import ConfigFileNotFoundError
+from pypacking.exceptions import InvalidConfigFileError
+from pypacking.exceptions import PackageNotFoundError
 
 
 class PyPackingTest(SeqTest):
