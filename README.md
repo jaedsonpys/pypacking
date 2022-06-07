@@ -45,7 +45,9 @@ pypacking generate_config
 After that, you must fill in some information about your project:
 
 ```
-Name: 
+Author name:
+Author email:
+Project name: 
 Description (default description): 
 Version (1.0.0): 
 Python package: 
