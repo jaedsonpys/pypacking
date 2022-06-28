@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 from configparser import ConfigParser
 import platform
@@ -21,11 +22,7 @@ if USER_OS == 'Linux':
     else:
         LOCAL_PATH = os.path.join('/home', USERNAME, '.local')
 
-_python_versions = os.listdir(os.path.join(LOCAL_PATH, 'lib'))
-
-for i in _python_versions:
-    if i.startswith('python3'):
-        PYTHON_VERSION = i
+PYTHON_VERSION = 'python' + str(sys.version_info[0])
 
 
 class PyPacking:
