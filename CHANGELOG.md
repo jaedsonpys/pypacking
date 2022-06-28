@@ -52,3 +52,9 @@ All CHANGELOG of version 2.
 - `e9d80e4`: Adding exception to handle invalid files;
 - `f0522b4`: Removing unnecessary attributes in read_config;
 - `90e1b35`: Fixing parameter name to snake_case style.
+
+## 2.0.1
+
+### Improvements
+
+- `8c5479d`: Getting **python** version using "sys.version_info".
