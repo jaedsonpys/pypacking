@@ -4,4 +4,4 @@ from .exceptions import ConfigFileNotFoundError
 from .exceptions import InvalidConfigFileError
 
 __author__ = 'Jaedson Silva'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
