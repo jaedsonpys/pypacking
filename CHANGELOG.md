@@ -58,3 +58,14 @@ All CHANGELOG of version 2.
 ### Improvements
 
 - `8c5479d`: Getting **python** version using "sys.version_info".
+
+## 2.0.2
+
+### Improvements
+
+- `268564c`: Getting "site-packages" using sys module;
+- `04010ae`: Omitting use of PYTHON_VERSION variable.
+
+### Fixes
+
+- `d7c21f4`: Removing python interpreter location from start of installation file.
