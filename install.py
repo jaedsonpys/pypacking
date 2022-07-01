@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from pypacking import PyPacking
 from pypacking import __version__
 
