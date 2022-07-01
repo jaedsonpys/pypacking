@@ -27,8 +27,6 @@ if USER_OS == 'Linux':
                 SITE_PACKAGES_PATH = path
                 break
 
-PYTHON_VERSION = 'python' + str(sys.version_info[0])
-
 
 class PyPacking:
     def __init__(self) -> None:
