@@ -18,9 +18,14 @@ _virtual_env = os.environ.get('VIRTUAL_ENV')
 
 if USER_OS == 'Linux':
     if _virtual_env:
+        SITE_PACKAGES_PATH = sys.path[-1]
         LOCAL_PATH = _virtual_env
     else:
-        LOCAL_PATH = os.path.join('/home', USERNAME, '.local')
+        LOCAL_PATH = os.path.join('/home/{USERNAME}/.local')
+        for path in sys.path:
+            if os.path.basename(path) == 'site-packages':
+                SITE_PACKAGES_PATH = path
+                break
 
 PYTHON_VERSION = 'python' + str(sys.version_info[0])
 
@@ -164,16 +169,15 @@ class PyPacking:
         print('done')
 
     def _install_library(self, project_name: str, package_path: str) -> None:
-        package_dst = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
-        print(f'\tThe package will be saved in "{package_dst}"')
+        print(f'\tThe package will be saved in "{SITE_PACKAGES_PATH}"')
         
         print('\tUnpack package...', end='')
-        shutil.unpack_archive(package_path, package_dst, format='zip')
+        shutil.unpack_archive(package_path, SITE_PACKAGES_PATH, format='zip')
         print('done')
         print('\tRename configuration file...', end='')
 
-        config_filename = os.path.join(package_dst, CONFIG_FILENAME)
-        config_package_filename = os.path.join(package_dst, f'{project_name}.ini')
+        config_filename = os.path.join(SITE_PACKAGES_PATH, CONFIG_FILENAME)
+        config_package_filename = os.path.join(SITE_PACKAGES_PATH, f'{project_name}.ini')
         os.rename(config_filename, config_package_filename)
         print('done')
 
@@ -229,13 +233,12 @@ class PyPacking:
 
     @staticmethod
     def list_packages() -> dict:
-        site_packages_path = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
-        packages_path = os.listdir(site_packages_path)
+        packages_path = os.listdir(SITE_PACKAGES_PATH)
         all_packages = {}
 
         for p in packages_path:
             if p.endswith('.ini'):
-                full_filepath = os.path.join(site_packages_path, p)
+                full_filepath = os.path.join(SITE_PACKAGES_PATH, p)
                 config = ConfigParser()
                 config.read(full_filepath)
 
@@ -252,14 +255,13 @@ class PyPacking:
         selected_package = all_packages.get(project_name)
 
         if selected_package:
-            site_packages_path = os.path.join(LOCAL_PATH, 'lib', PYTHON_VERSION, 'site-packages')
             package_name = selected_package['packagepath']
             package_version = selected_package['version']
 
             print(f'Uninstalling package {package_name} in version {package_version}...')
             print(f'Removing from lib/ directory...', end='')
 
-            package_path = os.path.join(site_packages_path, package_name)
+            package_path = os.path.join(SITE_PACKAGES_PATH, package_name)
             shutil.rmtree(package_path)
             print('done')
 
@@ -273,7 +275,7 @@ class PyPacking:
                 print('done')
 
             print('Removing package configuration file...', end='')
-            config_filepath = os.path.join(site_packages_path, f'{project_name}.ini')
+            config_filepath = os.path.join(SITE_PACKAGES_PATH, f'{project_name}.ini')
             os.remove(config_filepath)
             print('done')
         else:
