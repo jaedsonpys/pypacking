@@ -1,6 +1,6 @@
 # PyPacking
 
-![BADGE](https://img.shields.io/badge/version-2.0.1-green)
+![BADGE](https://img.shields.io/badge/version-2.0.2-green)
 ![BADGE](https://img.shields.io/badge/license-MIT-red)
 ![BADGE](https://img.shields.io/badge/OS-Linux-yellow)
 
@@ -20,10 +20,10 @@ To install `PyPacking` on your machine (only **Linux** support), follow the step
 git clone git@github.com:jaedsonpys/pypacking.git
 ```
 
-2. Go to the project **root** and run the available `install` file:
+2. Go to the project **root** and run the available `install.py` file:
 
 ```
-./install
+python3 install.py
 ```
 
 > If you are using a virtual environment, PyPacking will be installed there.
