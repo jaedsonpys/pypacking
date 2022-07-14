@@ -10,10 +10,10 @@ from .pypacking import PyPacking
 def main():
     parser = ArgEasy(
         project_name='PyPacking',
-        description='PyPacking is a package manager and' \
-                    'installer for Python designed to be' \
-                    'interactive and user-friendly.\nWith' \
-                    'easy operation, you can install packages and tools.',
+        description=('PyPacking is a package manager and'
+                    'installer for Python designed to be'
+                    'interactive and user-friendly.\nWith'
+                    'easy operation, you can install packages and tools.'),
         version='2.0.0'
     )
 
