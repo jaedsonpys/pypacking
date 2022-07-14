@@ -1,0 +1,2 @@
+argeasy==1.1.1
+PySeqTest==1.0.2
